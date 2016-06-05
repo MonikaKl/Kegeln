@@ -6,11 +6,13 @@ import java.util.Date;
  * Created by Monika on 05.06.2016.
  */
 public class Spieler {
+    private long id;
     private String vorname;
     private String nachname;
-    private Date geburtsdatum;
+    private String geburtsdatum;
 
-    public Spieler(String vorname, String nachname, Date geburtsdatum){
+    public Spieler(long id, String vorname, String nachname, String geburtsdatum){
+        this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
         this.geburtsdatum = geburtsdatum;
@@ -32,11 +34,24 @@ public class Spieler {
         this.nachname = nachname;
     }
 
-    public Date getGeburtsdatum() {
+    public String getGeburtsdatum() {
         return geburtsdatum;
     }
 
-    public void setGeburtsdatum(Date geburtsdatum) {
+    public void setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return vorname + " " + nachname + " " + geburtsdatum;
     }
 }

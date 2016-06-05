@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".KegelnStart">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -20,28 +20,35 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/editText_hint_quantity"
-            android:inputType="number"
-            android:id="@+id/editText_quantity"
+            android:hint="@string/eingabe_vorname"
+            android:id="@+id/eingabe_vorname"
             android:layout_weight="1" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/editText_hint_product"
-            android:id="@+id/editText_product"
-            android:layout_weight="4" />
+            android:hint="@string/eingabe_nachname"
+            android:id="@+id/eingabe_nachname"
+            android:layout_weight="2" />
 
-        <Button
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_add_product"
-            android:id="@+id/button_add_product" />
+            android:hint="@string/eingabe_geburtsdatum"
+            android:id="@+id/eingabe_geburtsdatum"
+            android:layout_weight="2" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_spieler_hinzufuegen"
+        android:id="@+id/button_spieler_hinzufuegen" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview_shopping_memos"
+        android:id="@+id/listview_alle_spieler"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

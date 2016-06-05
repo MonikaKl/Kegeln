@@ -29,8 +29,8 @@ public class KegelnDbHelper extends SQLiteOpenHelper{
             "CREATE TABLE " + TABLE_SPIELER +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_VORNAME + " TEXT NOT NULL, " +
-                    COLUMN_VORNAME + " TEXT NOT NULL, " +
-                    COLUMN_GEBURTSDATUM + " DATE NOT NULL);";
+                    COLUMN_NACHNAME + " TEXT NOT NULL, " +
+                    COLUMN_GEBURTSDATUM + " TEXT NOT NULL);";
 
     public KegelnDbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
