@@ -6,4 +6,5 @@ package com.example.monika.kegeln;
 public class SpielerDAO {
 
     // HALLO MONIKA MAL SCHAUEN OB GITHUB FUNKTIONIERT
+    // funktioniert es denn auch anders herum?
 }
