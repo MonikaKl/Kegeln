@@ -13,6 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.monika.kegeln.datenbank.daos.SpielerDaoImpl;
+import com.example.monika.kegeln.datenbank.bo.Spieler;
+import com.example.monika.kegeln.datenbank.verwaltung.KegelnDbHelper;
+
 import java.util.List;
 
 /**
@@ -22,7 +26,9 @@ public class KegelnStart extends AppCompatActivity{
 
     public static final String LOG_TAG = KegelnStart.class.getSimpleName();
 
-   private SpielerDAO spielerDAO;
+    public SpielerDaoImpl spielerDao;
+
+    private KegelnDbHelper kegelnDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,10 @@ public class KegelnStart extends AppCompatActivity{
         setContentView(R.layout.spielerverwaltung);
 
         Log.d(LOG_TAG, "Das Datenquellen-Objekt wird angelegt.");
-        spielerDAO = new SpielerDAO(this);
+
+        //spielerDao = new SpielerDaoImpl(this);
+
+        kegelnDbHelper = new KegelnDbHelper(this);
 
         activateButtonSpielerHinzufuegen();
     }
@@ -68,7 +77,7 @@ public class KegelnStart extends AppCompatActivity{
                 editTextNachname.setText("");
                 editTextGeburtsdatum.setText("");
 
-                spielerDAO.createSpieler(vorname, nachname, geburtsdatum);
+                spielerDao.createSpieler(vorname, nachname, geburtsdatum);
 
                 InputMethodManager inputMethodManager;
                 inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -83,7 +92,8 @@ public class KegelnStart extends AppCompatActivity{
     }
 
     private void zeigeAlleSpieler () {
-        List<Spieler> alleSpielerListe = spielerDAO.getAllSpieler();
+        spielerDao = new SpielerDaoImpl(this, kegelnDbHelper);
+        List<Spieler> alleSpielerListe = spielerDao.getAllSpieler();
 
         ArrayAdapter<Spieler> spielerArrayAdapter = new ArrayAdapter<> (
                 this,
@@ -99,7 +109,7 @@ public class KegelnStart extends AppCompatActivity{
         super.onResume();
 
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
-        spielerDAO.open();
+        kegelnDbHelper.open();
 
         Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
         zeigeAlleSpieler();
@@ -110,7 +120,7 @@ public class KegelnStart extends AppCompatActivity{
         super.onPause();
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
-        spielerDAO.close();
+        kegelnDbHelper.close();
     }
 
     @Override

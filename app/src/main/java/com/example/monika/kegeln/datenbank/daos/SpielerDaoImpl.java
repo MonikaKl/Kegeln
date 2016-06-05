@@ -1,20 +1,24 @@
-package com.example.monika.kegeln;
+package com.example.monika.kegeln.datenbank.daos;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import com.example.monika.kegeln.datenbank.verwaltung.KegelnDbHelper;
+import com.example.monika.kegeln.datenbank.bo.Spieler;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Monika on 05.06.2016.
  */
-public class SpielerDAO {
-    private static final String LOG_TAG = SpielerDAO.class.getSimpleName();
+public class SpielerDaoImpl implements SpielerDao {
+    private static final String LOG_TAG = SpielerDaoImpl.class.getSimpleName();
 
-    private SQLiteDatabase database;
+
     private KegelnDbHelper dbHelper;
 
     private String[] columns = {
@@ -24,21 +28,12 @@ public class SpielerDAO {
             KegelnDbHelper.COLUMN_GEBURTSDATUM
     };
 
-    public SpielerDAO(Context context) {
-        Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
-        dbHelper = new KegelnDbHelper(context);
+    public SpielerDaoImpl(Context context, KegelnDbHelper dbHelper ) {
+        Log.d(LOG_TAG, "SpielerDaoImpl Konstruktor.");
+        this.dbHelper = dbHelper;
     }
 
-    public void open() {
-        Log.d(LOG_TAG, "Eine Referenz auf die Datenbank wird jetzt angefragt.");
-        database = dbHelper.getWritableDatabase();
-        Log.d(LOG_TAG, "Datenbank-Referenz erhalten. Pfad zur Datenbank: " + database.getPath());
-    }
 
-    public void close() {
-        dbHelper.close();
-        Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
-    }
 
     /*
 Datensätze einfügen
@@ -49,9 +44,9 @@ Datensätze einfügen
         values.put(KegelnDbHelper.COLUMN_NACHNAME, nachname);
         values.put(KegelnDbHelper.COLUMN_GEBURTSDATUM, geburtsdatum);
 
-        long insertId = database.insert(KegelnDbHelper.TABLE_SPIELER, null, values);
+        long insertId = dbHelper.getDatabase().insert(KegelnDbHelper.TABLE_SPIELER, null, values);
 
-        Cursor cursor = database.query(KegelnDbHelper.TABLE_SPIELER,
+        Cursor cursor = dbHelper.getDatabase().query(KegelnDbHelper.TABLE_SPIELER,
                 columns, KegelnDbHelper.COLUMN_ID + "=" + insertId,
                 null, null, null, null);
 
@@ -81,7 +76,7 @@ Datensätze einfügen
     public List<Spieler> getAllSpieler() {
         List<Spieler> alleSpieler = new ArrayList<>();
 
-        Cursor cursor = database.query(KegelnDbHelper.TABLE_SPIELER,
+        Cursor cursor = dbHelper.getDatabase().query(KegelnDbHelper.TABLE_SPIELER,
                 columns, null, null, null, null, null);
 
         cursor.moveToFirst();

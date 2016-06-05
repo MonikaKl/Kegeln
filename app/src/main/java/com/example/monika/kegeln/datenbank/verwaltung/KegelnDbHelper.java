@@ -1,4 +1,4 @@
-package com.example.monika.kegeln;
+package com.example.monika.kegeln.datenbank.verwaltung;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +13,7 @@ import android.util.Log;
  */
 public class KegelnDbHelper extends SQLiteOpenHelper{
 
+    private SQLiteDatabase database;
     private static final String LOG_TAG = KegelnDbHelper.class.getSimpleName();
 
     public static final String DB_NAME = "kegeln.db";
@@ -54,8 +55,25 @@ public class KegelnDbHelper extends SQLiteOpenHelper{
 
     }
 
+    public void open() {
+        Log.d(LOG_TAG, "Eine Referenz auf die Datenbank wird jetzt angefragt.");
+        this.database = super.getWritableDatabase();
+        Log.d(LOG_TAG, "Datenbank-Referenz erhalten. Pfad zur Datenbank: " + database.getPath());
+    }
+
+    public void close() {
+        super.close();
+        Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public SQLiteDatabase getDatabase() {
+        return database;
+    }
+
+
 }

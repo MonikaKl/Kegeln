@@ -1,6 +1,4 @@
-package com.example.monika.kegeln;
-
-import java.util.Date;
+package com.example.monika.kegeln.datenbank.bo;
 
 /**
  * Created by Monika on 05.06.2016.
