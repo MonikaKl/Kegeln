@@ -6,10 +6,15 @@
 
     <string name="button_neuer_spieltag">Neuer Spieltag</string>
     <string name="button_spielerverwaltung">Spielerverwaltung</string>
+    <string name="button_strafenverwaltung">Strafenverwaltung</string>
 
     <string name="eingabe_vorname">Vorname</string>
     <string name="eingabe_nachname">Nachname</string>
     <string name="eingabe_geburtsdatum">TT.MM.JJJJ</string>
 
+    <string name="eingabe_bezeichnung">Bezeichnung</string>
+    <string name="eingabe_preis">00,00</string>
+
     <string name="button_spieler_hinzufuegen">Hinzufügen</string>
+    <string name="button_strafe_hinzufuegen">Hinzufügen</string>
 </resources>

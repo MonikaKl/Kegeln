@@ -8,6 +8,7 @@ import android.database.Cursor;
 
 import com.example.monika.kegeln.datenbank.verwaltung.KegelnDbHelper;
 import com.example.monika.kegeln.datenbank.bo.Spieler;
+import com.example.monika.kegeln.datenbank.verwaltung.SpielerSqlite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,10 @@ public class SpielerDaoImpl implements SpielerDao {
     private KegelnDbHelper dbHelper;
 
     private String[] columns = {
-            KegelnDbHelper.COLUMN_ID,
-            KegelnDbHelper.COLUMN_VORNAME,
-            KegelnDbHelper.COLUMN_NACHNAME,
-            KegelnDbHelper.COLUMN_GEBURTSDATUM
+            SpielerSqlite.COLUMN_ID,
+            SpielerSqlite.COLUMN_VORNAME,
+            SpielerSqlite.COLUMN_NACHNAME,
+            SpielerSqlite.COLUMN_GEBURTSDATUM
     };
 
     public SpielerDaoImpl(Context context, KegelnDbHelper dbHelper ) {
@@ -40,14 +41,14 @@ Datensätze einfügen
  */
     public Spieler createSpieler(String vorname, String nachname, String geburtsdatum) {
         ContentValues values = new ContentValues();
-        values.put(KegelnDbHelper.COLUMN_VORNAME, vorname);
-        values.put(KegelnDbHelper.COLUMN_NACHNAME, nachname);
-        values.put(KegelnDbHelper.COLUMN_GEBURTSDATUM, geburtsdatum);
+        values.put(SpielerSqlite.COLUMN_VORNAME, vorname);
+        values.put(SpielerSqlite.COLUMN_NACHNAME, nachname);
+        values.put(SpielerSqlite.COLUMN_GEBURTSDATUM, geburtsdatum);
 
-        long insertId = dbHelper.getDatabase().insert(KegelnDbHelper.TABLE_SPIELER, null, values);
+        long insertId = dbHelper.getDatabase().insert(SpielerSqlite.TABLE_SPIELER, null, values);
 
-        Cursor cursor = dbHelper.getDatabase().query(KegelnDbHelper.TABLE_SPIELER,
-                columns, KegelnDbHelper.COLUMN_ID + "=" + insertId,
+        Cursor cursor = dbHelper.getDatabase().query(SpielerSqlite.TABLE_SPIELER,
+                columns, SpielerSqlite.COLUMN_ID + "=" + insertId,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -58,10 +59,10 @@ Datensätze einfügen
     }
 
     private Spieler cursorToSpieler(Cursor cursor) {
-        int idIndex = cursor.getColumnIndex(KegelnDbHelper.COLUMN_ID);
-        int idVorname = cursor.getColumnIndex(KegelnDbHelper.COLUMN_VORNAME);
-        int idNachname = cursor.getColumnIndex(KegelnDbHelper.COLUMN_NACHNAME);
-        int idGeburtsdatum= cursor.getColumnIndex(KegelnDbHelper.COLUMN_GEBURTSDATUM);
+        int idIndex = cursor.getColumnIndex(SpielerSqlite.COLUMN_ID);
+        int idVorname = cursor.getColumnIndex(SpielerSqlite.COLUMN_VORNAME);
+        int idNachname = cursor.getColumnIndex(SpielerSqlite.COLUMN_NACHNAME);
+        int idGeburtsdatum= cursor.getColumnIndex(SpielerSqlite.COLUMN_GEBURTSDATUM);
 
         String vorname = cursor.getString(idVorname);
         String nachname = cursor.getString(idNachname);
@@ -76,7 +77,7 @@ Datensätze einfügen
     public List<Spieler> getAllSpieler() {
         List<Spieler> alleSpieler = new ArrayList<>();
 
-        Cursor cursor = dbHelper.getDatabase().query(KegelnDbHelper.TABLE_SPIELER,
+        Cursor cursor = dbHelper.getDatabase().query(SpielerSqlite.TABLE_SPIELER,
                 columns, null, null, null, null, null);
 
         cursor.moveToFirst();

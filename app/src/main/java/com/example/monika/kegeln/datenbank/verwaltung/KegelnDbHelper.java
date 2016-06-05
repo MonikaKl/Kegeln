@@ -16,25 +16,10 @@ public class KegelnDbHelper extends SQLiteOpenHelper{
     private SQLiteDatabase database;
     private static final String LOG_TAG = KegelnDbHelper.class.getSimpleName();
 
-    public static final String DB_NAME = "kegeln.db";
-    public static final int DB_VERSION = 1;
 
-    public static final String TABLE_SPIELER = "spieler";
-
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_VORNAME = "vorname";
-    public static final String COLUMN_NACHNAME = "nachname";
-    public static final String COLUMN_GEBURTSDATUM = "geburtsdatum";
-
-    public static final String SQL_CREATE =
-            "CREATE TABLE " + TABLE_SPIELER +
-                    "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_VORNAME + " TEXT NOT NULL, " +
-                    COLUMN_NACHNAME + " TEXT NOT NULL, " +
-                    COLUMN_GEBURTSDATUM + " TEXT NOT NULL);";
 
     public KegelnDbHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, SpielerSqlite.DB_NAME, null, SpielerSqlite.DB_VERSION);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
     }
 
@@ -46,8 +31,15 @@ public class KegelnDbHelper extends SQLiteOpenHelper{
      */
     public void onCreate(SQLiteDatabase db) {
         try {
-            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SQL_CREATE + " angelegt.");
-            db.execSQL(SQL_CREATE);
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + SpielerSqlite.SQL_CREATE + " angelegt.");
+            db.execSQL(SpielerSqlite.SQL_CREATE);
+        }
+        catch (Exception ex) {
+            Log.e(LOG_TAG, "Fehler beim Anlegen der Tabelle: " + ex.getMessage());
+        }
+        try {
+            Log.d(LOG_TAG, "Die Tabelle wird mit SQL-Befehl: " + StrafeSqlite.SQL_CREATE + " angelegt.");
+            db.execSQL(StrafeSqlite.SQL_CREATE);
         }
         catch (Exception ex) {
             Log.e(LOG_TAG, "Fehler beim Anlegen der Tabelle: " + ex.getMessage());

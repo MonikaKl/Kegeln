@@ -16,6 +16,22 @@ public class Spieler {
         this.geburtsdatum = geburtsdatum;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Spieler spieler = (Spieler) o;
+
+        return id == spieler.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
+
     public String getVorname() {
         return vorname;
     }
