@@ -7,9 +7,6 @@ public class SpielerSqlite {
 
     private static final String LOG_TAG = SpielerSqlite.class.getSimpleName();
 
-    public static final String DB_NAME = "kegeln.db";
-    public static final int DB_VERSION = 1;
-
     public static final String TABLE_SPIELER = "spieler";
 
     public static final String COLUMN_ID = "_id";

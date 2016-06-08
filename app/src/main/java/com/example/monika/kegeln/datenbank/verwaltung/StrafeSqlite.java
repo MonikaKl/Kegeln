@@ -6,9 +6,6 @@ package com.example.monika.kegeln.datenbank.verwaltung;
 public class StrafeSqlite {
     private static final String LOG_TAG = StrafeSqlite.class.getSimpleName();
 
-    public static final String DB_NAME = "kegeln.db";
-    public static final int DB_VERSION = 1;
-
     public static final String TABLE_STRAFE = "strafe";
 
     public static final String COLUMN_ID = "_id";

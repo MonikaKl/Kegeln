@@ -17,9 +17,11 @@ public class KegelnDbHelper extends SQLiteOpenHelper{
     private static final String LOG_TAG = KegelnDbHelper.class.getSimpleName();
 
 
+    public static final String DB_NAME = "kegeln.db";
+    public static final int DB_VERSION = 1;
 
     public KegelnDbHelper(Context context) {
-        super(context, SpielerSqlite.DB_NAME, null, SpielerSqlite.DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
     }
 
