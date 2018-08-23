@@ -29,7 +29,20 @@ public class KegelnStart extends AppCompatActivity {
             }
         });
 
-        Button btn = (Button) findViewById(R.id.button_strafenverwaltung);
+        Button strafenVerwaltungsButton = (Button) findViewById(R.id.button_strafenverwaltung);
+        assert strafenVerwaltungsButton != null;
+        strafenVerwaltungsButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(KegelnStart.this, Strafenverwaltung.class));
+
+            }
+        });
+
+        Button btn = (Button) findViewById(R.id.button_neuer_spieltag);
         assert btn != null;
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -37,7 +50,7 @@ public class KegelnStart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(KegelnStart.this, Strafenverwaltung.class));
+                startActivity(new Intent(KegelnStart.this, SpielStarten.class));
 
             }
         });

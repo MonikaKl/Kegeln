@@ -17,4 +17,8 @@
 
     <string name="button_spieler_hinzufuegen">Hinzufügen</string>
     <string name="button_strafe_hinzufuegen">Hinzufügen</string>
+
+    <string name="button_neues_spiel_starten">Neues Spiel</string>
+    <string name="button_spiel_fortsetzen">Spiel Fortsetzen</string>
+
 </resources>
